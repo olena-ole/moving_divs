@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving Divs</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .div-element {
+      height: 100px;
+      width: 100%;
+      text-align: center;
+      line-height: 100px;
+      font-size: 24px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const body = document.querySelector('body');
+    const LIST_OFFSET = 2;
+
+    for (let i = 0; i < 100; i++) {
+      const div = document.createElement('div');
+      div.classList.add('div-element');
+      div.innerText = `div-${i + 1}`;
+      div.dataset.index = i;
+      body.appendChild(div);
+    }
+
+    function handleClick(event) {
+      const targetDiv = event.target;
+      const clickedIndex = Array.from(body.children).indexOf(targetDiv) - 1;
+      const initialIndex = +targetDiv.dataset.index;
+
+      if (clickedIndex === 0 && initialIndex === 0) {
+        return;
+      }
+
+      if (clickedIndex !== 0) {
+        body.removeChild(targetDiv);
+        body.insertBefore(targetDiv, body.childNodes[LIST_OFFSET]);
+      } else {
+        body.removeChild(targetDiv);
+        body.insertBefore(targetDiv, body.childNodes[initialIndex + LIST_OFFSET]);
+      }
+    }
+
+    const elements = document.querySelectorAll('.div-element');
+    elements.forEach(element => element.addEventListener('click', handleClick));
+  </script>
+</body>
+</html>
