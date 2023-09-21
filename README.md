@@ -1,4 +1,4 @@
 [DEMO LINK](https://olena-ole.github.io/moving_divs/)
 
-- Click on any element to move it to the top
-- Click on the top element to move it to the initial position
+- On the first click on a chosen element, it moves to the first top position
+- On the second click on the same element, it moves to the initial position
