@@ -34,24 +34,23 @@
       div.classList.add('div-element');
       div.innerText = `div-${i + 1}`;
       div.dataset.index = i;
+      div.dataset.clicked = '';
       body.appendChild(div);
     }
 
     function handleClick(event) {
       const targetDiv = event.target;
-      const clickedIndex = Array.from(body.children).indexOf(targetDiv) - 1;
       const initialIndex = +targetDiv.dataset.index;
+      const isClicked = !!targetDiv.dataset.clicked;
 
-      if (clickedIndex === 0 && initialIndex === 0) {
-        return;
-      }
-
-      if (clickedIndex !== 0) {
-        body.removeChild(targetDiv);
-        body.insertBefore(targetDiv, body.childNodes[LIST_OFFSET]);
-      } else {
+      if (isClicked) {
         body.removeChild(targetDiv);
         body.insertBefore(targetDiv, body.childNodes[initialIndex + LIST_OFFSET]);
+        targetDiv.dataset.clicked = '';
+      } else {
+        body.removeChild(targetDiv);
+        body.insertBefore(targetDiv, body.childNodes[LIST_OFFSET]);
+        targetDiv.dataset.clicked = 'clicked';
       }
     }
 
