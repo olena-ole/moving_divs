@@ -24,10 +24,8 @@
     }
   </style>
 </head>
-<body>
-  <script>
+<body><script>
     const body = document.querySelector('body');
-    const LIST_OFFSET = 2;
 
     for (let i = 0; i < 100; i++) {
       const div = document.createElement('div');
@@ -45,17 +43,16 @@
 
       if (isClicked) {
         body.removeChild(targetDiv);
-        body.insertBefore(targetDiv, body.childNodes[initialIndex + LIST_OFFSET]);
+        body.insertBefore(targetDiv, body.childNodes[initialIndex + 1]);
         targetDiv.dataset.clicked = '';
       } else {
         body.removeChild(targetDiv);
-        body.insertBefore(targetDiv, body.childNodes[LIST_OFFSET]);
+        body.insertBefore(targetDiv, body.childNodes[1]);
         targetDiv.dataset.clicked = 'clicked';
       }
     }
 
     const elements = document.querySelectorAll('.div-element');
     elements.forEach(element => element.addEventListener('click', handleClick));
-  </script>
-</body>
+  </script></body>
 </html>
